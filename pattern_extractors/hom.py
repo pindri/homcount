@@ -17,6 +17,7 @@ def compute_hom(passed_args=None):
     parser.add_argument('--pattern_count', type=int, default=50)
     parser.add_argument('--run_id', type=str, default=0)
     parser.add_argument('--hom_size', type=int, default=6)
+    parser.add_argument('--max_treewidth', type=int, default=6)
     parser.add_argument('--data', default='MUTAG')
     parser.add_argument('--hom_type', type=str, choices=hom_types)
     parser.add_argument('--dloc', type=str, default="./data")
@@ -76,6 +77,7 @@ def compute_hom(passed_args=None):
         with precompute_patterns_file_handle(args.data.upper(), args.hom_type, args.hom_size, args.pattern_count, args.run_id, args.oloc) as f:
             homX = hom_func(graphs, 
                             size=args.hom_size, 
+                            max_treewidth=args.max_treewidth,
                             density=False, 
                             seed=args.seed, 
                             pattern_count=args.pattern_count, 
